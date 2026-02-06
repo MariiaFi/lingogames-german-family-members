@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Семья на немецком — Обучающая игра</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍👩‍👧‍👦</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-home-heart"></i>
+                    <h1>Семья на немецком</h1>
+                </div>
+                <p class="tagline">Учим названия членов семьи с артиклями и произношением</p>
+            </div>
+        </header>
+
+        <main>
+            <!-- Start Screen -->
+            <section id="start-screen" class="screen active">
+                <div class="welcome-card">
+                    <div class="flag-icon">
+                        🇩🇪
+                    </div>
+                    <h2>Учим немецкую семью!</h2>
+                    <p class="intro-text">
+                        В этой игре вы выучите 17 немецких названий членов семьи с правильными артиклями 
+                        и произношением. Идеально для начинающих и тех, кто хочет освежить знания.
+                    </p>
+                    
+                    <div class="learning-features">
+                        <div class="feature">
+                            <i class="fas fa-volume-up"></i>
+                            <span>Транскрипция</span>
+                            <p>Учим правильное произношение</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-article"></i>
+                            <span>Артикли</span>
+                            <p>Запоминаем род существительных</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-comment-alt"></i>
+                            <span>Примеры</span>
+                            <p>Использование в предложениях</p>
+                        </div>
+                    </div>
+                    
+                    <button id="start-btn" class="btn-primary">
+                        <i class="fas fa-play-circle"></i> Начать обучение
+                    </button>
+                    
+                    <div class="quick-tip">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Подсказка: Запоминайте артикли вместе со словами!</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Game Screen -->
+            <section id="game-screen" class="screen">
+                <div class="game-header">
+                    <div class="progress-container">
+                        <div class="progress-info">
+                            <span id="progress-text">Слово 1 из 17</span>
+                            <div class="progress-bar">
+                                <div id="progress-fill" class="progress-fill"></div>
+                            </div>
+                        </div>
+                        <div class="score-display">
+                            <i class="fas fa-star"></i>
+                            <span id="score">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-content">
+                    <!-- German Word Display -->
+                    <div class="word-display">
+                        <div class="word-header">
+                            <span class="label">Немецкое слово:</span>
+                            <div class="article-badge" id="article-badge">der</div>
+                        </div>
+                        <div id="german-word" class="german-word">Vater</div>
+                        <div class="transcription">
+                            <i class="fas fa-volume-up"></i>
+                            <span id="transcription">[ˈfaːtɐ]</span>
+                        </div>
+                    </div>
+
+                    <!-- Example Sentence -->
+                    <div class="example-card">
+                        <div class="example-header">
+                            <i class="fas fa-comment"></i>
+                            <span>Пример в предложении:</span>
+                        </div>
+                        <p id="example-sentence" class="example-sentence">Mein Vater ist Arzt.</p>
+                    </div>
+
+                    <!-- Answer Options -->
+                    <div class="options-section">
+                        <p class="instruction">Выберите правильный перевод на русский:</p>
+                        <div id="options-container" class="options-container">
+                            <!-- Options will be generated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Feedback Area -->
+                    <div id="feedback-area" class="feedback-area hidden">
+                        <div class="feedback-content">
+                            <div id="feedback-icon" class="feedback-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="feedback-text">
+                                <h3 id="feedback-title">Правильно!</h3>
+                                <div class="explanation-section">
+                                    <p id="correct-answer" class="correct-answer"></p>
+                                    <p id="explanation" class="explanation"></p>
+                                    <div class="pronunciation-tip">
+                                        <i class="fas fa-assistive-listening-systems"></i>
+                                        <span>Произношение: </span>
+                                        <span id="feedback-transcription" class="transcription-text"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="next-btn" class="btn-next">
+                            <i class="fas fa-arrow-right"></i> Следующее слово
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Screen -->
+            <section id="results-screen" class="screen">
+                <div class="results-card">
+                    <div class="results-header">
+                        <div class="trophy-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h2>Обучение завершено!</h2>
+                    </div>
+                    
+                    <div class="score-display-large">
+                        <div class="score-label">Ваш результат:</div>
+                        <div class="score-value" id="final-score">0/17</div>
+                        <div class="score-percentage" id="score-percentage">0%</div>
+                    </div>
+                    
+                    <div class="results-message">
+                        <p id="result-message">Отлично! Ты выучил(а) немецкие названия членов семьи</p>
+                    </div>
+                    
+                    <div class="results-details">
+                        <div class="detail-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Правильных ответов: <strong id="correct-count">0</strong></span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-book"></i>
+                            <span>Изучено слов: <strong>17</strong></span>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button id="restart-btn" class="btn-primary">
+                            <i class="fas fa-redo"></i> Пройти ещё раз
+                        </button>
+                    </div>
+                    
+                    <div class="encouragement">
+                        <i class="fas fa-heart"></i>
+                        <p>Продолжайте учить немецкий каждый день по 5 минут!</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <p>Образовательная игра для изучения немецкого языка. Подходит для детей и взрослых.</p>
+                <p class="copyright">© 2024 Lingogames German Family Members</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
